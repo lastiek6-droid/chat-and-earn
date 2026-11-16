@@ -1,1 +1,292 @@
-<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Chat & Earn Zambia - ZMW</title><style>*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}body{background:#fff;color:#111;min-height:100vh}.topbar{background:#fff;display:flex;align-items:center;justify-content:space-between;padding:12px 16px;box-shadow:0 2px 8px rgba(0,0,0,0.08);position:sticky;top:0;z-index:10}.logo{display:flex;align-items:center;gap:8px;font-weight:900;font-size:18px;color:#e11d2d}.logo span{background:#e11d2d;color:#fff;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:8px}.btn-top{padding:8px 14px;border-radius:8px;border:none;font-weight:bold;font-size:12px}.btn-login{background:#f3f4f6;color:#111}.btn-signup{background:#e11d2d;color:#fff}.hero{background:#d90f1f;color:#fff;text-align:center;padding:30px 16px 50px}.hero h1{font-size:30px;line-height:1.1;font-weight:900}.card{background:#fff;border-radius:14px;padding:14px;margin:10px;box-shadow:0 6px 20px rgba(0,0,0,0.08);border:1px solid #eee}.label{font-size:10px;color:#6b7280;margin:7px 0 3px;display:block;text-transform:uppercase}.input{width:100%;padding:11px;border-radius:10px;border:1px solid #ddd;background:#f9fafb;color:#111;font-size:14px}.btn{width:100%;padding:11px;border-radius:10px;border:none;font-weight:bold;font-size:14px;margin-top:8px}.btn-red{background:#e11d2d;color:#fff}.balance{font-size:32px;font-weight:900;text-align:center;color:#e11d2d}.q-option{display:block;width:100%;text-align:left;background:#fff;border:1px solid #e5e7eb;color:#111;padding:11px;border-radius:10px;margin:6px 0;font-size:13px}.tabs{display:flex;gap:4px;margin:10px;overflow-x:auto}.tab{flex:1;padding:9px;background:#f3f4f6;border:1px solid #e5e7eb;color:#111;border-radius:9px;text-align:center;font-size:11px;font-weight:bold;white-space:nowrap}.tab.active{background:#e11d2d;color:#fff}.hidden{display:none}.small{font-size:11px;color:#6b7280}</style></head><body><div class="topbar"><div style="display:flex;align-items:center;gap:10px"><div>☰</div><div class="logo"><span>A</span> ZMW Earn Zambia</div></div><div style="display:flex;gap:6px"><button class="btn-top btn-login" onclick="showLogin()">LOG IN</button><button class="btn-top btn-signup" onclick="showReg()">SIGN UP</button></div></div><div class="hero"><h1>Advanced<br>Earning<br>Network Zambia</h1><p style="margin-top:10px">Earn in Zambian Kwacha (ZMW)<br>Q&A ZMW 5 Each | Min Withdraw ZMW 300</p></div><div style="max-width:460px;margin:-30px auto 0;padding:0 6px"><div id="regPage" class="card"><h3 style="text-align:center;font-weight:900">Create Account - ZMW</h3><p class="small" style="text-align:center">Earn in Zambian Kwacha (ZMW / ZK)</p><label class="label">Full Name (NRC)</label><input id="fullName" class="input" placeholder="John Banda"><label class="label">Phone (MTN/Airtel Money ZMW)</label><input id="phone" class="input" placeholder="0977 123456"><label class="label">Email</label><input id="email" class="input" placeholder="john@gmail.com"><label class="label">Province</label><select id="province" class="input"><option>Lusaka</option><option>Copperbelt</option><option>Central</option><option>Southern</option><option>Eastern</option></select><label class="label">Referral Code</label><input id="refCodeInput" class="input" placeholder="Optional"><label class="label">Password</label><input id="pass" type="password" class="input"><label style="display:flex;gap:6px;margin:10px 0;font-size:11px"><input type="checkbox" id="terms"> I agree, 18+, Zambian Kwacha (ZMW) earnings</label><button class="btn btn-red" onclick="register()">SIGN UP & GET ZMW 5 BONUS</button><p style="text-align:center;margin-top:8px;font-size:12px">Have account? <span style="color:#e11d2d;font-weight:bold" onclick="showLogin()">LOG IN</span></p></div><div id="loginPage" class="card hidden"><h3 style="text-align:center">Log In - ZMW</h3><label class="label">Phone</label><input id="loginPhone" class="input"><label class="label">Password</label><input id="loginPass" type="password" class="input"><button class="btn btn-red" onclick="login()">LOG IN</button></div><div id="appPage" class="hidden"><div class="card" style="text-align:center"><p class="small">YOUR BALANCE IN ZAMBIAN KWACHA</p><div class="balance">ZMW <span id="bal">0.00</span></div><p style="background:#e11d2d;color:#fff;padding:5px 12px;border-radius:20px;font-size:11px;font-weight:bold;display:inline-block;margin-top:6px">MIN WITHDRAW: ZMW 300 / ZK 300</p><p style="font-size:11px;margin-top:6px">Progress: ZMW <span id="bal2">0</span>/300 | Need ZMW <span id="need">300</span> more</p><p class="small">🇿🇲 Currency: Zambian Kwacha (ZMW) = ZK</p></div><div class="tabs"><div class="tab active" onclick="switchTab('q')">📝 Q&A ZMW5</div><div class="tab" onclick="switchTab('ads')">📺 Ads</div><div class="tab" onclick="switchTab('invite')">👥 Invite</div><div class="tab" onclick="switchTab('withdraw')">💰 ZMW Cashout</div></div><div id="qTab"><div class="card"><h4 style="font-weight:900">📝 Answer & Earn ZMW 5 Each!</h4><p class="small">Earn in Zambian Kwacha (ZMW). Each correct = ZMW 5 (500 ngwee)</p><div style="background:#f9fafb;border:1px solid #eee;padding:12px;border-radius:12px;margin:8px 0"><h4 id="qText">Loading...</h4><p class="small" id="qReward">Reward: ZMW 5</p><div id="qOptions"></div><p class="small" style="margin-top:8px">Answered: <span id="qToday">0</span> | Balance ZMW <span id="bal3">0</span> | 60 answers = ZMW 300</p></div><button class="btn" style="background:#111;color:#fff" onclick="nextQuestion()">Next Question</button></div></div><div id="adsTab" class="hidden"><div class="card"><div style="background:linear-gradient(135deg,#e11d2d,#ff4d5a);color:#fff;padding:14px;border-radius:12px;text-align:center"><h3>📺 Watch Ad & Earn ZMW 0.20</h3><p style="font-size:11px">15 sec = ZMW 0.20 (20 ngwee)</p><div id="adPlayer" class="hidden"><div style="font-size:26px;font-weight:900;margin:8px 0" id="timer">15</div><div style="background:#fff;color:#e11d2d;padding:10px;border-radius:8px;margin:6px 0">ADSTERRA ZAMBIA - Win ZMW 100!</div></div><button id="watchBtn" class="btn" style="background:#fff;color:#e11d2d" onclick="watchAd()">▶️ Watch Ad (ZMW 0.20)</button><p style="font-size:11px;margin-top:6px"><span id="adsLeft">20</span> ads left | Daily ZMW 4 from ads</p></div></div></div><div id="inviteTab" class="hidden"><div class="card"><h4>👥 Invite Friends - Earn ZMW 5!</h4><p class="small">Earn ZMW 5 (ZK 5) per friend in Zambian Kwacha</p><div style="background:#f9fafb;border:1px dashed #e11d2d;padding:10px;border-radius:10px;word-break:break-all;font-size:11px" id="refLink">link</div><button class="btn btn-red" onclick="shareWA()">📲 Share WhatsApp (ZMW)</button><p class="small" style="margin-top:6px">Code: <b id="myCode" style="color:#e11d2d">CODE</b> | Friends: <span id="friendListCount">0</span> | Earned ZMW <span id="inviteEarn">0.00</span></p></div></div><div id="withdrawTab" class="hidden"><div class="card"><h4>💰 Withdraw in Zambian Kwacha (ZMW)</h4><p style="background:#e11d2d;color:#fff;padding:8px;border-radius:8px;font-size:11px;text-align:center">⚠️ Minimum ZMW 300 (ZK 300) - Zambian Kwacha Only!</p><label class="label">Amount (Min ZMW 300 - Max ZMW 5000)</label><input id="withdrawAmt" type="number" class="input" placeholder="300"><label class="label">Mobile Money Number (MTN/Airtel - Receives ZMW)</label><input id="momoNum" class="input" placeholder="0977..."><label class="label">Full Name (For ZMW Payment)</label><input id="withdrawName" class="input"><button class="btn btn-red" onclick="withdraw()">💸 Request ZMW Withdrawal</button><p class="small" style="text-align:center;margin-top:6px">Balance: ZMW <span id="bal4">0.00</span>/300 | Currency: ZMW (ZK) 🇿🇲</p><p class="small" style="text-align:center">Status: <span id="withdrawHist">None - Earn ZMW 300!</span></p></div></div><button class="btn" style="background:#f3f4f6;color:#111;border:1px solid #ddd" onclick="logout()">Logout</button></div></div><script>const QS=[{q:"Capital of Zambia?",o:["Lusaka","Ndola","Kitwe"],a:0},{q:"How do you feel today?",o:["Happy 😊","Tired 😐","Very Happy Ready to Earn ZMW! 🚀","Sad 😔"],a:2},{q:"10 x 10 Zambian Kwacha (ZMW)?",o:["ZMW 50","ZMW 100","ZMW 200"],a:1},{q:"Copper mining province in Zambia?",o:["Copperbelt","Lusaka","Southern"],a:0},{q:"What will you use ZMW for?",o:["School Fees","Food & Family","Business","All above"],a:3},{q:"Dream earning per day in ZMW?",o:["ZMW 20","ZMW 100+","ZMW 500+"],a:2},{q:"Zambia team nickname?",o:["Chipolopolo","Super Eagles","Bafana"],a:0},{q:"Rate this ZMW earning app?",o:["Excellent ⭐⭐⭐⭐⭐","Good","Average"],a:0}];let bal=parseInt(localStorage.getItem('ze_b')||'0');let adsWatched=parseInt(localStorage.getItem('ze_ads')||'0');let fr=parseInt(localStorage.getItem('ze_f')||'0');let qAn=parseInt(localStorage.getItem('ze_q')||'0');let cur=0;let user=JSON.parse(localStorage.getItem('ze_u')||'null');let code=localStorage.getItem('ze_c')||'ZM'+Math.floor(1000+Math.random()*9000);localStorage.setItem('ze_c',code);if(user){showApp();loadQ();}function register(){let n=document.getElementById('fullName').value;let p=document.getElementById('phone').value;let e=document.getElementById('email').value;let pw=document.getElementById('pass').value;if(!n||!p||!e||!pw){alert('Fill all!');return;}bal+=500;localStorage.setItem('ze_b',bal);localStorage.setItem('ze_u',JSON.stringify({name:n,phone:p,email:e,pass:pw,code:code}));alert('Registered! ZMW 5 bonus! Earn ZMW 300!');showApp();loadQ();}function showLogin(){document.getElementById('regPage').classList.add('hidden');document.getElementById('loginPage').classList.remove('hidden');}function showReg(){document.getElementById('loginPage').classList.add('hidden');document.getElementById('regPage').classList.remove('hidden');}function login(){let p=document.getElementById('loginPhone').value;let pw=document.getElementById('loginPass').value;let u=JSON.parse(localStorage.getItem('ze_u')||'null');if(u&&u.phone==p&&u.pass==pw){showApp();loadQ();}else{alert('Wrong');}}function showApp(){document.getElementById('regPage').classList.add('hidden');document.getElementById('loginPage').classList.add('hidden');document.getElementById('appPage').classList.remove('hidden');upd();let u=JSON.parse(localStorage.getItem('ze_u')||'null');if(u){document.getElementById('refLink').innerText='https://lastiek6-droid.github.io/chat-and-earn/?ref='+u.code;document.getElementById('myCode').innerText=u.code;document.getElementById('withdrawName').value=u.name;}}function upd(){let k=(bal/100).toFixed(2);document.getElementById('bal').innerText=k;document.getElementById('bal2').innerText=k;document.getElementById('bal3').innerText=k;if(document.getElementById('bal4'))document.getElementById('bal4').innerText=k;let need=300-(bal/100);if(need<0)need=0;document.getElementById('need').innerText=need.toFixed(2);if(document.getElementById('need2'))document.getElementById('need2').innerText=need.toFixed(2);document.getElementById('qToday').innerText=qAn;document.getElementById('friendListCount').innerText=fr;document.getElementById('inviteEarn').innerText=(fr*5).toFixed(2);document.getElementById('adsLeft').innerText=(20-adsWatched);}function loadQ(){if(cur>=QS.length)cur=0;let q=QS[cur];document.getElementById('qText').innerText=(qAn+1)+'. '+q.q+' (Earn ZMW 5)';let d=document.getElementById('qOptions');d.innerHTML='';q.o.forEach((o,i)=>{let b=document.createElement('button');b.className='q-option';b.innerText=o;b.onclick=()=>ans(i);d.appendChild(b);});}function ans(idx){let q=QS[cur];let opts=document.querySelectorAll('.q-option');opts.forEach(o=>o.style.pointerEvents='none');if(idx===q.a){opts[idx].style.background='#22c55e';opts[idx].style.color='#fff';bal+=500;qAn++;localStorage.setItem('ze_b',bal);localStorage.setItem('ze_q',qAn);upd();setTimeout(()=>{alert('Correct! ZMW 5 earned! (Zambian Kwacha)');cur++;loadQ();},600);}else{opts[idx].style.background='#ef4444';opts[idx].style.color='#fff';opts[q.a].style.background='#22c55e';opts[q.a].style.color='#fff';bal+=100;qAn++;localStorage.setItem('ze_b',bal);localStorage.setItem('ze_q',qAn);upd();setTimeout(()=>{alert('Wrong but ZMW 1 for trying! Correct: '+q.o[q.a]);cur++;loadQ();},900);}}function nextQuestion(){cur++;if(cur>=QS.length)cur=0;loadQ();}function switchTab(t){document.getElementById('qTab').classList.add('hidden');document.getElementById('adsTab').classList.add('hidden');document.getElementById('inviteTab').classList.add('hidden');document.getElementById('withdrawTab').classList.add('hidden');document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));if(t=='q'){document.getElementById('qTab').classList.remove('hidden');document.querySelectorAll('.tab')[0].classList.add('active');}if(t=='ads'){document.getElementById('adsTab').classList.remove('hidden');document.querySelectorAll('.tab')[1].classList.add('active');}if(t=='invite'){document.getElementById('inviteTab').classList.remove('hidden');document.querySelectorAll('.tab')[2].classList.add('active');}if(t=='withdraw'){document.getElementById('withdrawTab').classList.remove('hidden');document.querySelectorAll('.tab')[3].classList.add('active');}}function shareWA(){let l=document.getElementById('refLink').innerText;window.open('https://wa.me/?text='+encodeURIComponent('Join ZMW Earn Zambia! Earn ZMW 5 per Q! ZMW 300 Withdraw! '+l));fr++;localStorage.setItem('ze_f',fr);upd();}function withdraw(){let amt=parseFloat(document.getElementById('withdrawAmt').value);let num=document.getElementById('momoNum').value;let name=document.getElementById('withdrawName').value;if(!amt||!num||!name){alert('Fill all!');return;}if(amt<300){alert('Minimum ZMW 300! You have ZMW '+(bal/100).toFixed(2));return;}if((bal/100)<amt){alert('Insufficient ZMW! Have ZMW '+(bal/100).toFixed(2));return;}bal-=amt*100;localStorage.setItem('ze_b',bal);upd();document.getElementById('withdrawHist').innerText='Pending ZMW '+amt+' to '+num;alert('Withdraw ZMW '+amt+' requested! (Zambian Kwacha)');}function logout(){localStorage.removeItem('ze_u');location.reload();}</script></body></html>
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Chat & Earn Zambia - ZMW</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
+body{background:#fff;color:#111;min-height:100vh}
+.topbar{background:#fff;display:flex;justify-content:space-between;
+padding:12px 16px;box-shadow:0 2px 8px rgba(0,0,0,0.08);
+position:sticky;top:0;z-index:10}
+.logo{display:flex;align-items:center;gap:8px;
+font-weight:900;font-size:18px;color:#e11d2d}
+.logo span{background:#e11d2d;color:#fff;width:32px;height:32px;
+display:flex;align-items:center;justify-content:center;border-radius:8px}
+.btn-top{padding:8px 14px;border-radius:8px;border:none;
+font-weight:bold;font-size:12px}
+.btn-login{background:#f3f4f6;color:#111}
+.btn-signup{background:#e11d2d;color:#fff}
+.hero{background:#d90f1f;color:#fff;text-align:center;
+padding:30px 16px 50px}
+.hero h1{font-size:30px;line-height:1.1;font-weight:900}
+.card{background:#fff;border-radius:14px;padding:14px;margin:10px;
+box-shadow:0 6px 20px rgba(0,0,0,0.08);border:1px solid #eee}
+.label{font-size:10px;color:#6b7280;margin:7px 0 3px;
+display:block;text-transform:uppercase}
+.input{width:100%;padding:11px;border-radius:10px;
+border:1px solid #ddd;background:#f9fafb;color:#111;font-size:14px}
+.btn{width:100%;padding:11px;border-radius:10px;border:none;
+font-weight:bold;font-size:14px;margin-top:8px}
+.btn-red{background:#e11d2d;color:#fff}
+.balance{font-size:32px;font-weight:900;text-align:center;color:#e11d2d}
+.q-option{display:block;width:100%;text-align:left;background:#fff;
+border:1px solid #e5e7eb;color:#111;padding:11px;border-radius:10px;
+margin:6px 0;font-size:13px}
+.tabs{display:flex;gap:4px;margin:10px;overflow-x:auto}
+.tab{flex:1;padding:9px;background:#f3f4f6;border:1px solid #e5e7eb;
+color:#111;border-radius:9px;text-align:center;font-size:11px;
+font-weight:bold;white-space:nowrap}
+.tab.active{background:#e11d2d;color:#fff}
+.hidden{display:none}
+.small{font-size:11px;color:#6b7280}
+</style>
+</head>
+<body>
+<div class="topbar">
+<div style="display:flex;align-items:center;gap:10px">
+<div>☰</div>
+<div class="logo"><span>A</span> ZMW Earn Zambia</div>
+</div>
+<div style="display:flex;gap:6px">
+<button class="btn-top btn-login" onclick="showLogin()">LOG IN</button>
+<button class="btn-top btn-signup" onclick="showReg()">SIGN UP</button>
+</div>
+</div>
+
+<div class="hero">
+<h1>Advanced<br>Earning<br>Network Zambia</h1>
+<p style="margin-top:10px">
+Earn in Zambian Kwacha (ZMW)<br>
+Q&A ZMW 5 Each | Min Withdraw ZMW 300
+</p>
+</div>
+
+<div style="max-width:460px;margin:-30px auto 0;padding:0 6px">
+
+<div id="regPage" class="card">
+<h3 style="text-align:center;font-weight:900">Create Account - ZMW</h3>
+<p class="small" style="text-align:center">Earn in Zambian Kwacha (ZMW / ZK)</p>
+<label class="label">Full Name (NRC)</label>
+<input id="fullName" class="input" placeholder="John Banda">
+<label class="label">Phone (MTN/Airtel Money ZMW)</label>
+<input id="phone" class="input" placeholder="0977 123456">
+<label class="label">Email</label>
+<input id="email" class="input" placeholder="john@gmail.com">
+<label class="label">Province</label>
+<select id="province" class="input">
+<option>Lusaka</option><option>Copperbelt</option>
+<option>Central</option><option>Southern</option>
+<option>Eastern</option>
+</select>
+<label class="label">Referral Code</label>
+<input id="refCodeInput" class="input" placeholder="Optional">
+<label class="label">Password</label>
+<input id="pass" type="password" class="input">
+<label style="display:flex;gap:6px;margin:10px 0;font-size:11px">
+<input type="checkbox" id="terms"> I agree, 18+, Zambian Kwacha (ZMW)
+</label>
+<button class="btn btn-red" onclick="register()">SIGN UP & GET ZMW 5 BONUS</button>
+</div>
+
+<div id="loginPage" class="card hidden">
+<h3 style="text-align:center">Log In - ZMW</h3>
+<label class="label">Phone</label><input id="loginPhone" class="input">
+<label class="label">Password</label><input id="loginPass" type="password" class="input">
+<button class="btn btn-red" onclick="login()">LOG IN</button>
+</div>
+
+<div id="appPage" class="hidden">
+<div class="card" style="text-align:center">
+<p class="small">YOUR BALANCE IN ZAMBIAN KWACHA</p>
+<div class="balance">ZMW <span id="bal">0.00</span></div>
+<p style="background:#e11d2d;color:#fff;padding:5px 12px;
+border-radius:20px;font-size:11px;font-weight:bold;
+display:inline-block;margin-top:6px">
+MIN WITHDRAW: ZMW 300 / ZK 300
+</p>
+<p style="font-size:11px;margin-top:6px">
+Progress: ZMW <span id="bal2">0</span>/300 | Need ZMW <span id="need">300</span> more
+</p>
+<p class="small">🇿🇲 Currency: Zambian Kwacha (ZMW) = ZK</p>
+</div>
+
+<div class="tabs">
+<div class="tab active" onclick="switchTab('q')">📝 Q&A ZMW5</div>
+<div class="tab" onclick="switchTab('invite')">👥 Invite</div>
+<div class="tab" onclick="switchTab('withdraw')">💰 ZMW Cashout</div>
+</div>
+
+<div id="qTab">
+<div class="card">
+<h4 style="font-weight:900">📝 Answer & Earn ZMW 5 Each!</h4>
+<p class="small">Each correct = ZMW 5 (500 ngwee)</p>
+<div style="background:#f9fafb;border:1px solid #eee;
+padding:12px;border-radius:12px;margin:8px 0">
+<h4 id="qText">Loading...</h4>
+<p class="small" id="qReward">Reward: ZMW 5</p>
+<div id="qOptions"></div>
+<p class="small" style="margin-top:8px">
+Answered: <span id="qToday">0</span> | 60 answers = ZMW 300
+</p>
+</div>
+<button class="btn" style="background:#111;color:#fff" onclick="nextQuestion()">Next Question</button>
+</div>
+</div>
+
+<div id="inviteTab" class="hidden">
+<div class="card">
+<h4>👥 Invite Friends - Earn ZMW 5!</h4>
+<div style="background:#f9fafb;border:1px dashed #e11d2d;
+padding:10px;border-radius:10px;word-break:break-all;font-size:11px" id="refLink">link</div>
+<button class="btn btn-red" onclick="shareWA()">📲 Share WhatsApp (ZMW)</button>
+<p class="small" style="margin-top:6px">Code: <b id="myCode" style="color:#e11d2d">CODE</b> | Friends: <span id="friendListCount">0</span></p>
+</div>
+</div>
+
+<div id="withdrawTab" class="hidden">
+<div class="card">
+<h4>💰 Withdraw in Zambian Kwacha (ZMW)</h4>
+<p style="background:#e11d2d;color:#fff;padding:8px;
+border-radius:8px;font-size:11px;text-align:center">
+⚠️ Minimum ZMW 300 (ZK 300) - Zambian Kwacha Only!
+</p>
+<label class="label">Amount (Min ZMW 300)</label>
+<input id="withdrawAmt" type="number" class="input" placeholder="300">
+<label class="label">Mobile Money Number</label>
+<input id="momoNum" class="input" placeholder="0977...">
+<label class="label">Full Name</label>
+<input id="withdrawName" class="input">
+<button class="btn btn-red" onclick="withdraw()">💸 Request ZMW Withdrawal</button>
+<p class="small" style="text-align:center;margin-top:6px">Status: <span id="withdrawHist">None - Earn ZMW 300!</span></p>
+</div>
+</div>
+
+<button class="btn" style="background:#f3f4f6;color:#111;border:1px solid #ddd" onclick="logout()">Logout</button>
+</div>
+</div>
+
+<script>
+const QS=[
+{q:"Capital of Zambia?",o:["Lusaka","Ndola","Kitwe"],a:0},
+{q:"How do you feel today?",o:["Happy 😊","Tired 😐","Very Happy Ready to Earn ZMW! 🚀","Sad 😔"],a:2},
+{q:"10 x 10 Zambian Kwacha (ZMW)?",o:["ZMW 50","ZMW 100","ZMW 200"],a:1},
+{q:"Copper mining province?",o:["Copperbelt","Lusaka","Southern"],a:0},
+{q:"What will you use ZMW for?",o:["School Fees","Food & Family","Business","All above"],a:3},
+{q:"Dream earning per day in ZMW?",o:["ZMW 20","ZMW 100+","ZMW 500+"],a:2},
+{q:"Zambia team nickname?",o:["Chipolopolo","Super Eagles","Bafana"],a:0}
+];
+let bal=parseInt(localStorage.getItem('ze_b')||'0');
+let fr=parseInt(localStorage.getItem('ze_f')||'0');
+let qAn=parseInt(localStorage.getItem('ze_q')||'0');
+let cur=0;
+let user=JSON.parse(localStorage.getItem('ze_u')||'null');
+let code=localStorage.getItem('ze_c')||'ZM'+Math.floor(1000+Math.random()*9000);
+localStorage.setItem('ze_c',code);
+if(user){showApp();loadQ();}
+function register(){
+let n=document.getElementById('fullName').value;
+let p=document.getElementById('phone').value;
+let e=document.getElementById('email').value;
+let pw=document.getElementById('pass').value;
+if(!n||!p||!e||!pw){alert('Fill all!');return;}
+bal+=500;localStorage.setItem('ze_b',bal);
+localStorage.setItem('ze_u',JSON.stringify({name:n,phone:p,email:e,pass:pw,code:code}));
+alert('Registered! ZMW 5 bonus! Earn ZMW 300!');showApp();loadQ();
+}
+function showLogin(){
+document.getElementById('regPage').classList.add('hidden');
+document.getElementById('loginPage').classList.remove('hidden');
+}
+function showReg(){
+document.getElementById('loginPage').classList.add('hidden');
+document.getElementById('regPage').classList.remove('hidden');
+}
+function login(){
+let p=document.getElementById('loginPhone').value;
+let pw=document.getElementById('loginPass').value;
+let u=JSON.parse(localStorage.getItem('ze_u')||'null');
+if(u&&u.phone==p&&u.pass==pw){showApp();loadQ();}
+else{alert('Wrong');}
+}
+function showApp(){
+document.getElementById('regPage').classList.add('hidden');
+document.getElementById('loginPage').classList.add('hidden');
+document.getElementById('appPage').classList.remove('hidden');
+upd();
+let u=JSON.parse(localStorage.getItem('ze_u')||'null');
+if(u){
+document.getElementById('refLink').innerText='https://lastiek6-droid.github.io/chat-and-earn/?ref='+u.code;
+document.getElementById('myCode').innerText=u.code;
+document.getElementById('withdrawName').value=u.name;
+}
+}
+function upd(){
+let k=(bal/100).toFixed(2);
+document.getElementById('bal').innerText=k;
+document.getElementById('bal2').innerText=k;
+let need=300-(bal/100);if(need<0)need=0;
+document.getElementById('need').innerText=need.toFixed(2);
+document.getElementById('qToday').innerText=qAn;
+document.getElementById('friendListCount').innerText=fr;
+}
+function loadQ(){
+if(cur>=QS.length)cur=0;
+let q=QS[cur];
+document.getElementById('qText').innerText=(qAn+1)+'. '+q.q+' (Earn ZMW 5)';
+let d=document.getElementById('qOptions');d.innerHTML='';
+q.o.forEach((o,i)=>{
+let b=document.createElement('button');b.className='q-option';
+b.innerText=o;b.onclick=()=>ans(i);d.appendChild(b);
+});
+}
+function ans(idx){
+let q=QS[cur];
+let opts=document.querySelectorAll('.q-option');
+opts.forEach(o=>o.style.pointerEvents='none');
+if(idx===q.a){
+opts[idx].style.background='#22c55e';opts[idx].style.color='#fff';
+bal+=500;qAn++;localStorage.setItem('ze_b',bal);
+localStorage.setItem('ze_q',qAn);upd();
+setTimeout(()=>{alert('Correct! ZMW 5 earned!');cur++;loadQ();},600);
+}else{
+opts[idx].style.background='#ef4444';opts[idx].style.color='#fff';
+opts[q.a].style.background='#22c55e';opts[q.a].style.color='#fff';
+bal+=100;qAn++;localStorage.setItem('ze_b',bal);
+localStorage.setItem('ze_q',qAn);upd();
+setTimeout(()=>{alert('Wrong but ZMW 1! Correct: '+q.o[q.a]);cur++;loadQ();},900);
+}
+}
+function nextQuestion(){cur++;if(cur>=QS.length)cur=0;loadQ();}
+function switchTab(t){
+document.getElementById('qTab').classList.add('hidden');
+document.getElementById('inviteTab').classList.add('hidden');
+document.getElementById('withdrawTab').classList.add('hidden');
+document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+if(t=='q'){document.getElementById('qTab').classList.remove('hidden');
+document.querySelectorAll('.tab')[0].classList.add('active');}
+if(t=='invite'){document.getElementById('inviteTab').classList.remove('hidden');
+document.querySelectorAll('.tab')[1].classList.add('active');}
+if(t=='withdraw'){document.getElementById('withdrawTab').classList.remove('hidden');
+document.querySelectorAll('.tab')[2].classList.add('active');}
+}
+function shareWA(){
+let l=document.getElementById('refLink').innerText;
+window.open('https://wa.me/?text='+encodeURIComponent('Join ZMW Earn Zambia! Earn ZMW 5 per Q! ZMW 300 Withdraw! '+l));
+fr++;localStorage.setItem('ze_f',fr);upd();
+}
+function withdraw(){
+let amt=parseFloat(document.getElementById('withdrawAmt').value);
+let num=document.getElementById('momoNum').value;
+let name=document.getElementById('withdrawName').value;
+if(!amt||!num||!name){alert('Fill all!');return;}
+if(amt<300){alert('Minimum ZMW 300! You have ZMW '+(bal/100).toFixed(2));return;}
+if((bal/100)<amt){alert('Insufficient ZMW! Have ZMW '+(bal/100).toFixed(2));return;}
+bal-=amt*100;localStorage.setItem('ze_b',bal);upd();
+document.getElementById('withdrawHist').innerText='Pending ZMW '+amt+' to '+num;
+alert('Withdraw ZMW '+amt+' requested! (Zambian Kwacha)');
+}
+function logout(){localStorage.removeItem('ze_u');location.reload();}
+</script>
+</body>
+</html>
